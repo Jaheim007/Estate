@@ -1,5 +1,6 @@
 from django.db import models
-from Customers.models import Customer 
+from Customers.models import Customer
+
 
 class HouseType(models.Model): 
     name = models.CharField(max_length=255)
@@ -26,8 +27,19 @@ class HousePaymentPeriod(models.Model):
     def __str__(self):
         return self.name
 
+class City(models.Model): 
+    name = models.CharField(max_length=50)
+    
+    created_at = models.DateTimeField(auto_now=True)
+    is_delete = models.BooleanField(default=False)  
+    updated_at = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return self.name
+
 class House(models.Model): 
-    agent = models.ForeignKey(Customer , on_delete=models.CASCADE , related_name="customer_house")     
+    agent = models.ForeignKey(Customer , on_delete=models.CASCADE , related_name="customer_houses")   
+    city = models.ForeignKey(City, on_delete=models.CASCADE, related_name="city_houses") 
     main_image = models.URLField()
     house_number = models.CharField(max_length=150)
     house_id = models.CharField(max_length=255)
@@ -35,7 +47,7 @@ class House(models.Model):
     garage_number = models.IntegerField()
     toillete_number = models.IntegerField()
     address_name = models.CharField(max_length=255)
-    price = models.CharField(max_length=255)
+    price = models.PositiveIntegerField()
     price_payment = models.ForeignKey(HousePaymentPeriod , on_delete=models.CASCADE)
     house_type = models.ForeignKey(HouseType, on_delete=models.CASCADE)
     latitude = models.DecimalField(max_digits=5, decimal_places=2)
@@ -72,6 +84,6 @@ class HouseReservation(models.Model):
     def __str__(self):
         return self.name()
 
-
+    
 
 # Create your models here.

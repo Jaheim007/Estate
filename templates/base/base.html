@@ -45,83 +45,83 @@
     </div>
     <span class="close-box-collapse right-boxed bi bi-x"></span>
     <div class="box-collapse-wrap form">
-      <form class="form-a">
+      <form class="form-a" action="{% url 'search' %}" method="GET">
+       {% csrf_token %} 
         <div class="row">
+          
           <div class="col-md-12 mb-2">
             <div class="form-group">
-              <label class="pb-2" for="Type">Keyword</label>
-              <input type="text" class="form-control form-control-lg form-control-a" placeholder="Keyword">
+              <label class="pb-2" for="Type">Mot clé</label>
+              <input name = "word" type="text" class="form-control form-control-lg form-control-a" placeholder="Mot clé">
             </div>
           </div>
+          
+            <div class="col-md-6 mb-2">
+              <div class="form-group mt-3">
+                <label class="pb-2" for="Type">Type</label>
+                  <select class="form-control form-select form-control-a" id="Type" name="house_type">
+                    <option value="-1">Tous les types</option>
+                    {% for item in house %}
+
+                      <option value="{{item.id}}">{{item.name}}</option>
+                    {% endfor %}
+                  </select>
+              </div>
+            </div>
+          
           <div class="col-md-6 mb-2">
             <div class="form-group mt-3">
-              <label class="pb-2" for="Type">Type</label>
-              <select class="form-control form-select form-control-a" id="Type">
-                <option>All Type</option>
-                <option>For Rent</option>
-                <option>For Sale</option>
-                <option>Open House</option>
+              <label class="pb-2" for="city">Ville</label>
+              <select class="form-control form-select form-control-a" id="city" name="city">
+                
+                <option value="-1">toutes les villes</option>
+                {% for city in cities %}
+                  <option value= "{{city.id}}">{{city.name}}</option>
+                {% endfor %}
+                
               </select>
             </div>
           </div>
           <div class="col-md-6 mb-2">
             <div class="form-group mt-3">
-              <label class="pb-2" for="city">City</label>
-              <select class="form-control form-select form-control-a" id="city">
-                <option>All City</option>
-                <option>Alabama</option>
-                <option>Arizona</option>
-                <option>California</option>
-                <option>Colorado</option>
-              </select>
-            </div>
-          </div>
-          <div class="col-md-6 mb-2">
-            <div class="form-group mt-3">
-              <label class="pb-2" for="bedrooms">Bedrooms</label>
-              <select class="form-control form-select form-control-a" id="bedrooms">
-                <option>Any</option>
-                <option>01</option>
-                <option>02</option>
-                <option>03</option>
+              <label class="pb-2" for="bedrooms">Chambres</label>
+              <select class="form-control form-select form-control-a" id="bedrooms" name="bedroom_number">
+                <option value="0">Any</option>
+                <option value="1">01</option>
+                <option value="2">02</option>
+                <option value="3">03</option>
               </select>
             </div>
           </div>
           <div class="col-md-6 mb-2">
             <div class="form-group mt-3">
               <label class="pb-2" for="garages">Garages</label>
-              <select class="form-control form-select form-control-a" id="garages">
-                <option>Any</option>
-                <option>01</option>
-                <option>02</option>
-                <option>03</option>
-                <option>04</option>
+              <select class="form-control form-select form-control-a" id="garages" name="garage_number">
+                <option value="0">Any</option>
+                <option value="1">01</option>
+                <option value="2">02</option>
+                <option value="3">03</option>
               </select>
             </div>
           </div>
           <div class="col-md-6 mb-2">
             <div class="form-group mt-3">
-              <label class="pb-2" for="bathrooms">Bathrooms</label>
-              <select class="form-control form-select form-control-a" id="bathrooms">
+              <label class="pb-2" for="bathrooms">Toilettes</label>
+              <select class="form-control form-select form-control-a" id="bathrooms" name="toilets_number">
                 <option>Any</option>
-                <option>01</option>
-                <option>02</option>
-                <option>03</option>
+                <option value="1">01</option>
+                <option value="2">02</option>
+                <option value="3">03</option>
               </select>
             </div>
           </div>
           <div class="col-md-6 mb-2">
             <div class="form-group mt-3">
-              <label class="pb-2" for="price">Min Price</label>
-              <select class="form-control form-select form-control-a" id="price">
-                <option>Unlimite</option>
-                <option>$50,000</option>
-                <option>$100,000</option>
-                <option>$150,000</option>
-                <option>$200,000</option>
-              </select>
+              <label class="pb-2" for="price">Prix Minimum</label>
+                <input name="min_price" type="text" class="form-control form-control-lg form-control-a" placeholder="Prix minimum" >
             </div>
           </div>
+          
           <div class="col-md-12">
             <button type="submit" class="btn btn-b">Search Property</button>
           </div>

@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-vyxq-#sy+ia89t)1^a9n+c&sda!%t7!@kkwspzwct^npun=)3a
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -66,6 +66,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'Estate.context_processor.House_type',
+                'Estate.context_processor.list_cities',
             ],
         },
     },
