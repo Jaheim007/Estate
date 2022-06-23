@@ -13,7 +13,7 @@
           <div class="col-md-12 col-lg-8">
             <div class="title-single-box">
               <h1 class="title-single">304 Blaster Up</h1>
-              <span class="color-text-a">Chicago, IL 606543</span>
+              <span class="color-text-a">{{houses.address_name}}</span>
             </div>
           </div>
           <div class="col-md-12 col-lg-4">
@@ -42,12 +42,9 @@
           <div class="col-lg-8">
             <div id="property-single-carousel" class="swiper">
               <div class="swiper-wrapper">
-                <div class="carousel-item-b swiper-slide">
-                  <img src="assets/img/slide-1.jpg" alt="">
-                </div>
-                <div class="carousel-item-b swiper-slide">
-                  <img src="assets/img/slide-2.jpg" alt="">
-                </div>
+                  <div class="carousel-item-b swiper-slide">
+                    <img src="{{houses.main_image}}" alt="">
+                  </div>
               </div>
             </div>
             <div class="property-single-carousel-pagination carousel-pagination"></div>
@@ -65,7 +62,7 @@
                       <span class="bi bi-cash">$</span>
                     </div>
                     <div class="card-title-c align-self-center">
-                      <h5 class="title-c">15000</h5>
+                      <h5 class="title-c">{{houses.price}}</h5>
                     </div>
                   </div>
                 </div>
@@ -81,15 +78,15 @@
                     <ul class="list">
                       <li class="d-flex justify-content-between">
                         <strong>Property ID:</strong>
-                        <span>1134</span>
+                        <span>{{houses.house_id}}</span>
                       </li>
                       <li class="d-flex justify-content-between">
                         <strong>Location:</strong>
-                        <span>Chicago, IL 606543</span>
+                        <span>{{houses.address_name}}</span>
                       </li>
                       <li class="d-flex justify-content-between">
                         <strong>Property Type:</strong>
-                        <span>House</span>
+                        <span>{{houses.house_type}}</span>
                       </li>
                       <li class="d-flex justify-content-between">
                         <strong>Status:</strong>
@@ -103,15 +100,15 @@
                       </li>
                       <li class="d-flex justify-content-between">
                         <strong>Beds:</strong>
-                        <span>4</span>
+                        <span>{{houses.rooms_number}}</span>
                       </li>
                       <li class="d-flex justify-content-between">
                         <strong>Baths:</strong>
-                        <span>2</span>
+                        <span>{{houses.toillete_number}}</span>
                       </li>
                       <li class="d-flex justify-content-between">
                         <strong>Garage:</strong>
-                        <span>1</span>
+                        <span>{{houses.garage_number}}</span>
                       </li>
                     </ul>
                   </div>
@@ -127,16 +124,7 @@
                 </div>
                 <div class="property-description">
                   <p class="description color-text-a">
-                    Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit
-                    neque, auctor sit amet
-                    aliquam vel, ullamcorper sit amet ligula. Cras ultricies ligula sed magna dictum porta.
-                    Curabitur aliquet quam id dui posuere blandit. Mauris blandit aliquet elit, eget tincidunt
-                    nibh pulvinar quam id dui posuere blandit.
-                  </p>
-                  <p class="description color-text-a no-margin">
-                    Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Donec rutrum congue leo eget
-                    malesuada. Quisque velit nisi,
-                    pretium ut lacinia in, elementum id enim. Donec sollicitudin molestie malesuada.
+                    {{house_type.description}}
                   </p>
                 </div>
                 <div class="row section-t3">
@@ -252,7 +240,7 @@
               </div>
               <div class="col-md-12 col-lg-4">
                 <div class="property-contact">
-                  <form action = "{% url 'property_single' %}" method="POST" class="form-a">
+                  <form action = "" method="POST" class="form-a">
                     {% csrf_token %}
                     <div class="row">
                       <div class="col-md-12 mb-1">

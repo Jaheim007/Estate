@@ -1,4 +1,3 @@
-from dataclasses import field
 from django.shortcuts import redirect, render
 from .models import Banner, Service, SiteInfo, Social, Blog, Testimony, Contact, Footer
 from Customers.models import Customer, InfoAgent, SocialAgent
@@ -31,13 +30,14 @@ def contact(request):
         email = request.POST.get('email')
         subject = request.POST.get('subject')
         message = request.POST.get('message')
-        contact = Contact.objects.create(
+        contact = Contact(
             name = name,
             email = email, 
             subject = subject, 
             message = message
         )
 
+        contact.save()
         return redirect("contact")
     return render(request, 'pages/contact.html', locals())
 
@@ -50,20 +50,35 @@ def blog(request):
     blogs = Blog.objects.all()
     return render(request, 'pages/blog-grid.html', locals())
 
-def property_single(request):
+def property_single(request, property_id):
+    house_type = HouseType.objects.first()          
+    try:  
+          
+        houses = House.objects.get(id=property_id)
+        print("on a:",houses)
+        return render(request, 'pages/property-single.html', locals())
     
+    except:   
+        
+        data = {
+            'msg' : 'error'
+        }
+
+        return redirect('/', data)
+
+def agents_post_property(request):    
     if request.method == "POST":
         name = request.POST.get('name')
         phone = request.POST.get('phone')
         comment = request.POST.get('comment') 
-        house = request.POST.get("house")
+        house = request.POST.get('house')
         reservation = HouseReservation(
         name= name,
         phone = phone, 
         comment = comment,
         house = house)
-        reservation.save()
-
+        reservation.save()    
+        
     return render(request, 'pages/property-single.html', locals())
 
 def agent_single(request):
@@ -78,7 +93,6 @@ def filter_search(request):
     try:
         all_request_data = request.GET 
         all_house = House.objects.all()
-        
         word = all_request_data.get("word")
         house_type = all_request_data.get("house_type")
         city = all_request_data.get("city")

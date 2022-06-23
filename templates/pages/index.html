@@ -111,14 +111,14 @@
                   <div class="card-overlay-a-content">
                     <div class="card-header-a">
                       <h2 class="card-title-a">
-                        <a href="property-single.html">{{house.house_number}} {{house.address_name}}</a>
+                        <a href="#">{{house.house_number}} {{house.address_name}}</a>
                       </h2>
                     </div>
                     <div class="card-body-a">
                       <div class="price-box d-flex">
                         <span class="price-a">rent | $ {{house.price}}</span>
                       </div>
-                      <a href="#" class="link-a">Click here to view
+                      <a href="{% url 'property_single' house.id %}" class="link-a">Click here to view
                         <span class="bi bi-chevron-right"></span>
                       </a>
                     </div>

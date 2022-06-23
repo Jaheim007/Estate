@@ -8,8 +8,8 @@ urlpatterns = [
     path('contact', contact, name='contact'),
     path('agents', agents, name='agents'),
     path('blog', blog, name='blog'),
-    path('property_single', property_single, name='property_single'),
-    path('agent_single', agent_single, name='agent_single'),
+    path('property_single/<int:property_id>', property_single, name='property_single'),
+    path('agent_single/<int:agent_single_id>', agent_single, name='agent_single'),
     path('blog_single', blog_single, name='blog_single'),   
     path('search',filter_search,name="search")
 ]
